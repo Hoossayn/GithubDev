@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         progress_dialog = new ProgressDialog(this);
         progress_dialog.setMessage("Loading details...");
         progress_dialog.setCancelable(false);
-        progress_dialog.show();
-        recyclerView=(RecyclerView) findViewById(R.id.recyclerView);
+//        progress_dialog.show();
+        recyclerView =(RecyclerView) findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.smoothScrollToPosition(0);
         loadData();
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv_disconnect = (TextView) findViewById(R.id.disconnected);
         try{
-            Server Client = new Server();
+            Server Server = new Server();
             Service apiService =
                     Server.getClient().create(Service.class);
             Call<listOfDevs> call = apiService.getItems();
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<listOfDevs> call, Response<listOfDevs> response) {
                     List<RowDev> items = response.body().getRowDevs();
+                    Log.d("responseBody", String.valueOf(items));
                     recyclerView.setAdapter(new RowDevAdapter(items, getApplicationContext()));
                     recyclerView.smoothScrollToPosition(0);
                     swipeContainer.setRefreshing(false);
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 //handles error message
                 @Override
                 public void onFailure(Call<listOfDevs> call, Throwable t) {
-                    Log.d("Error", t.getMessage());
                     Toast.makeText(MainActivity.this, "Error in loading details", Toast.LENGTH_SHORT).show();
                     tv_disconnect.setVisibility(View.VISIBLE);
                     progress_dialog.hide();

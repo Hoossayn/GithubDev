@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">GithubDev</string>
     <string name="no_internet">No internet connection</string>
+    <string name="userName">UserName</string>
+    <string name="githublink">GithubLink</string>
+    <string name="loading">Loading details...</string>
+    <string name="repos">Github Repos</string>
 </resources>

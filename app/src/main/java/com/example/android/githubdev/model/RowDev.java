@@ -5,8 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class RowDev {
 
+    @SerializedName("login")
     private String login;
+    @SerializedName("profilePicUrl")
     private String profilePicUrl;
+    @SerializedName("url")
     private String url;
 
     public RowDev(String login, String avatarUrl, String htmlUrl){
